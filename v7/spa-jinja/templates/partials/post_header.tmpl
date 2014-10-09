@@ -1,6 +1,6 @@
 {#  -*- coding: utf-8 -*- #}
-{% import 'post_helper.tmpl' as helper with context %}
-{% import 'comments_helper.tmpl' as comments with context %}
+{% import 'post_helper.tmpl' as helper %}
+{% import 'comments_helper.tmpl' as comments %}
 
 {% macro html_title() %}
     <h1 class="p-name entry-title" itemprop="headline name"><a href="{{ post.permalink() }}" class="u-url">{{ title|e }}</a></h1>
