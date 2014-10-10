@@ -1,14 +1,15 @@
 {#  -*- coding: utf-8 -*- #}
 {% set post = get_post_data(post, _link, lang) %}
+
 {% extends 'base.tmpl' %}
 
 {% block extra_head %}
     {{ super() }}
-    {% include 'partials/post_meta.tmpl' %}
+    {% include 'post_meta.partial' %}
 {% endblock %}
 
 {% block content %}
-    {% include 'partials/post.tmpl' %}
+    {% include 'post.partial' %}
 {% endblock %}
 
 {% block sourcelink %}
