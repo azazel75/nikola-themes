@@ -112,9 +112,9 @@ lang="{{ lang }}">
             <link href="/assets/css/custom.css" rel="stylesheet" type="text/css">
         {% endif %}
     {% endif %}
-    {% if annotations and post and not post.meta('noannotations') %}
+    {% if annotations and post and not post.meta.noannotations %}
         {{ notes.css() }}
-    {% elif not annotations and post and post.meta('annotations') %}
+    {% elif not annotations and post and post.meta.annotations %}
         {{ notes.css() }}
     {% endif %}
 {% endmacro %}
