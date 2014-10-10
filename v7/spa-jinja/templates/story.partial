@@ -8,7 +8,7 @@
 <article class="storypage" itemscope="itemscope" itemtype="http://schema.org/Article">
     <header>
         {{ pheader.html_title(post) }}
-        {{ pheader.html_translations(post) }}
+        {{ pheader.html_translations(post, messages) }}
     </header>
     <div itemprop="articleBody text">
     {{ post.text }}

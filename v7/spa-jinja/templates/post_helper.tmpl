@@ -16,7 +16,7 @@
     {% endif %}
 {% endmacro %}
 
-{% macro html_pager(post) %}
+{% macro html_pager(post, messages) %}
     {% if post.prev_post or post.next_post %}
         <ul class="pager">
         {% if post.prev_post %}

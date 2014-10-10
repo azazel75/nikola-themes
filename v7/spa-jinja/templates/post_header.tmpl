@@ -6,7 +6,7 @@
     <h1 class="p-name entry-title" itemprop="headline name"><a href="{{ post.permalink }}" class="u-url">{{ post.meta.title|e }}</a></h1>
 {% endmacro %}
 
-{% macro html_translations(post) %}
+{% macro html_translations(post, messages) %}
     {% if post.translated_to|length > 1 %}
         <div class="metadata posttranslations translations">
             <h3 class="posttranslations-intro">{{ messages("Also available in:") }}</h3>
@@ -17,7 +17,7 @@
     {% endif %}
 {% endmacro %}
 
-{% macro html_post_header(post) %}
+{% macro html_post_header(post, messages) %}
     <header>
         {{ html_title(post) }}
         <div class="metadata">
@@ -33,6 +33,6 @@
                 <meta content="{{ post.meta.description }}" itemprop="description">
             {% endif %}
         </div>
-        {{ html_translations(post) }}
+        {{ html_translations(post, messages) }}
     </header>
 {% endmacro %}
