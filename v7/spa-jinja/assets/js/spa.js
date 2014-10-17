@@ -15,7 +15,7 @@
     });
 
     curl(['underscore', 'jquery',  'backbone', 'marionette', 'nunjucks', 'globals', 'models'])
-        .then(debugStart, fail);
+        .then(start, fail);
 
     function start(_, $, Backbone, Marionette, nunjucks, globals, models) {
         // Initialize nunjucks template system and plug it in inside Marionette
@@ -95,13 +95,5 @@
     }
     function fail(err) {
         console.log(err);
-    }
-
-    function debugStart() {
-        try {
-            start.apply(this, arguments);
-        } catch(e) {
-            console.error(e);
-        }
     }
 })();
