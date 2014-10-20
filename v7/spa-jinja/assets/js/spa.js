@@ -10,6 +10,7 @@
             backbone: 'backbone.marionette/backbone',
             marionette: 'backbone.marionette/backbone.marionette',
             nunjucks: 'nunjucks/nunjucks',
+            punycode: 'url/punycode',
             'json!': '/assets/json'
         }
     });
