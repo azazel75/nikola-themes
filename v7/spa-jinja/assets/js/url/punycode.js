@@ -1,3 +1,4 @@
+// -*- coding: utf-8 -*-
 /*! http://mths.be/punycode v1.2.4 by @mathias */
 ;(function(root) {
 

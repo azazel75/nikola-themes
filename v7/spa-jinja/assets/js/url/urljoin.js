@@ -1,3 +1,4 @@
+// -*- coding: utf-8 -*-
 /**
  * Copyright (C) 2014 yanni4night.com
  * index.js
@@ -11,55 +12,58 @@
  * @since 0.1.0
  */
 /*jslint node: true */
-"use strict";
 
-var extend = require('extend');
-var url = require('url');
-var path = require('path');
+define(['url/extend', 'url/url', 'url/path'], function(extend, url, path){
+    "use strict";
 
-/**
- * Join two or more url pieces into one.
- *
- * Only the protocol/port/host in the first piece is saved,but all the get parameters
- * will be saved.
- *
- * @param {String|Function}... Multiple url pieces in function or string type.
- * @return {String} The URL joined.
- */
-module.exports = function urljoin() {
+    var exports;
 
-    //convert to Array
-    var pieces = Array.prototype.slice.call(arguments);
-    var query = {};
-    var first, paths;
+    /**
+     * Join two or more url pieces into one.
+     *
+     * Only the protocol/port/host in the first piece is saved,but all the get parameters
+     * will be saved.
+     *
+     * @param {String|Function}... Multiple url pieces in function or string type.
+     * @return {String} The URL joined.
+     */
+    exports = function urljoin() {
 
-    if (!pieces.length) {
-        return '';
-    } else if (1 === pieces.length) {
-        return pieces[0];
-    }
+        //convert to Array
+        var pieces = Array.prototype.slice.call(arguments);
+        var query = {};
+        var first, paths;
 
-    paths = pieces.map(function(piece) {
-        var pieceStr = 'function' === typeof piece ? piece() : String(piece || "");
-
-        if (!pieceStr) {
+        if (!pieces.length) {
             return '';
+        } else if (1 === pieces.length) {
+            return pieces[0];
         }
 
-        var parsed = url.parse(pieceStr, true);
+        paths = pieces.map(function(piece) {
+            var pieceStr = 'function' === typeof piece ? piece() : String(piece || "");
 
-        if (!first && parsed) {
-            first = parsed;
-        }
+            if (!pieceStr) {
+                return '';
+            }
 
-        extend(query, parsed.query);
-        return parsed.pathname;
-    }).filter(function(piece) {
-        return !!piece;
-    });
+            var parsed = url.parse(pieceStr, true);
 
-    delete first.search; //we use query instead of search
-    first.query = query;
-    first.pathname = path.join.apply(path, paths);
-    return url.format(first);
-};
+            if (!first && parsed) {
+                first = parsed;
+            }
+
+            extend(query, parsed.query);
+            return parsed.pathname;
+        }).filter(function(piece) {
+            return !!piece;
+        });
+
+        delete first.search; //we use query instead of search
+        first.query = query;
+        first.pathname = path.join.apply(path, paths);
+        return url.format(first);
+    };
+
+    return exports;
+});
