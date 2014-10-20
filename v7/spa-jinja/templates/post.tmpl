@@ -12,9 +12,5 @@
 {% endblock %}
 
 {% block sourcelink %}
-{% if show_sourcelink %}
-    <li>
-    <a href="{{ post.source_link }}" id="sourcelink">{{ messages("Source") }}</a>
-    </li>
-{% endif %}
+    {% include 'post_sourcelink.partial' %}
 {% endblock %}

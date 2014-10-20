@@ -1,0 +1,7 @@
+{#  -*- coding: utf-8 -*- #}
+
+{% if show_sourcelink %}
+    <li>
+    <a href="{{ post.source_link }}" id="sourcelink">{{ messages("Source") }}</a>
+    </li>
+{% endif %}
