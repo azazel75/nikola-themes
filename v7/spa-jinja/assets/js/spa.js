@@ -28,9 +28,8 @@
             return rawTemplate;
         };
         Marionette.Renderer.render = function(template, data){
-            var template = Marionette.TemplateCache.get(template);
-            var blog_data = _.clone(globals);
-            blog_data.post = data;
+            template = Marionette.TemplateCache.get(template);
+            var blog_data = globals.to_template_context({post: data});
             return template.render(blog_data);
         };
         var Spa = Marionette.Application.extend();
