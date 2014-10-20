@@ -19,7 +19,7 @@
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-define(['url/punicode'], function(punicode){
+define(['punycode', 'url/querystring'], function(punicode, querystring) {
 
     var exports = {};
 
@@ -92,8 +92,7 @@ define(['url/punicode'], function(punicode){
             'ftp:': true,
             'gopher:': true,
             'file:': true
-        },
-        querystring = require('querystring');
+        };
 
     function urlParse(url, parseQueryString, slashesDenoteHost) {
         if (url && isObject(url) && url instanceof Url) return url;
