@@ -17,7 +17,7 @@
     });
 
     curl(['underscore', 'jquery',  'backbone', 'marionette',
-          'nunjucks', 'globals', 'models', 'scriptag'])
+          'nunjucks', 'globals', 'models', 'scriptag', 'js!bootstrap.js'])
         .then(start, fail);
 
     function start(_, $, Backbone, Marionette, nunjucks, globals,
