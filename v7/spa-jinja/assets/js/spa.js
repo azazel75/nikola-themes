@@ -59,26 +59,18 @@
         });
         var ContentRouter = Marionette.AppRouter.extend({
             routes: {
-                ':type/*content_id': 'goToContent'
+                ':type/*content_id': 'goToContent',
+                '': 'goToRoot'
             },
 
             goToContent: function(type, id) {
-                var posts = this.getOption('posts'),
-                    real_id = type +'/' + id + '.json',
-                    template_name, post, self;
-                if (type == 'posts')
-                    template_name = 'post.partial';
-                else if (type == 'stories')
-                    template_name = 'story.partial';
-                self = this;
-                post = posts.get(real_id);
-                function renderPost(post_or_d) {
-                    var view, app;
-                    view = new ContentView({model: post, template: template_name,
-                                            router: self});
-                    app = self.getOption('app');
-                    app.content_region.show(view);
-                }
+                var real_id = type + '/' + id + '.json';
+                this.showModel(real_id);
+            },
+
+            goToRoot: function() {
+                this.showModel('index.html.json');
+            },
                 if (post)
                     renderPost(post);
                 else {
