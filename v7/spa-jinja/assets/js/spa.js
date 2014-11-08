@@ -11,14 +11,17 @@
             marionette: 'backbone.marionette/backbone.marionette',
             nunjucks: 'nunjucks/nunjucks',
             punycode: 'url/punycode',
+            customelements: 'customelements/custom-elements',
             'json!': '/assets/json'
         }
     });
 
-    curl(['underscore', 'jquery',  'backbone', 'marionette', 'nunjucks', 'globals', 'models'])
+    curl(['underscore', 'jquery',  'backbone', 'marionette',
+          'nunjucks', 'globals', 'models', 'scriptag'])
         .then(start, fail);
 
-    function start(_, $, Backbone, Marionette, nunjucks, globals, models) {
+    function start(_, $, Backbone, Marionette, nunjucks, globals,
+                   models, enableScripts) {
         // Initialize nunjucks template system and plug it in inside Marionette
         var template_env = new nunjucks.Environment(new nunjucks.WebLoader('/assets/view', true));
         Marionette.TemplateCache.prototype.loadTemplate = function(templateId){
@@ -89,6 +92,7 @@
         spa.addInitializer(function(options) {
             this.addRegions({content_region: '#view-content'});
             var router = new ContentRouter({posts: options.posts, app: this});
+            enableScripts();
             Backbone.history.start({pushState: true});
         });
         spa.start({posts: posts});
